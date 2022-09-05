@@ -14,6 +14,7 @@ function Button({
     text = false,
     disabled = false,
     rounded = false,
+    unRounded = false,
     children,
     className,
     leftIcon,
@@ -52,6 +53,7 @@ function Button({
         large,
         text,
         rounded,
+        unRounded,
         disabled,
     });
 
