@@ -1,35 +1,28 @@
-import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
-import Tippy from '@tippyjs/react/headless';
 import Tooltip from '@tippyjs/react';
 
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '~/components/Button';
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRightToBracket,
     faBitcoinSign,
     faCircleQuestion,
-    faCircleXmark,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
-    faMagnifyingGlass,
     faPlus,
-    faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
-import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
-import {
-    faMessage,
-    faPaperPlane,
-    faUser,
-} from '@fortawesome/free-regular-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 import 'tippy.js/dist/tippy.css';
+import { InboxIcon, MessageIcon } from '~/components/Icons';
+import Image from '~/components/Image';
+import Search from '~/components/Layout/components/Search';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -66,13 +59,6 @@ const MENU_ITEMS = [
 const currentUser = true;
 
 export default function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    }, []);
-
     //handle logic
     const handleMenuChange = (menuItem) => {
         console.log(menuItem);
@@ -107,44 +93,13 @@ export default function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('logo')}>
-                    <img src={images.logo} alt="Tiktok" />
-                </div>
-                <Tippy
-                    interactive
-                    visible={searchResult.length}
-                    render={(attrs) => (
-                        <div
-                            className={cx('search-result')}
-                            tabIndex="-1"
-                            {...attrs}
-                        >
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input
-                            type="text"
-                            placeholder="Search accounts and videos"
-                            spellCheck={false}
-                        />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon
-                            className={cx('loading')}
-                            icon={faSpinner}
-                        />
-
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
+                <Link to={'/'}>
+                    <div className={cx('logo')}>
+                        <img src={images.logo} alt="Tiktok" />
                     </div>
-                </Tippy>
+                </Link>
+
+                <Search />
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
@@ -156,22 +111,23 @@ export default function Header() {
                                 Upload
                             </Button>
                             <Tooltip
-                                delay={150}
+                                delay={[0, 50]}
                                 content="Messages"
                                 placement="bottom"
                             >
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faPaperPlane} />
+                                    <MessageIcon />
                                 </button>
                             </Tooltip>
 
                             <Tooltip
-                                delay={150}
+                                delay={[0, 50]}
                                 content="Inbox"
                                 placement="bottom"
                             >
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faMessage} />
+                                    <InboxIcon />
+                                    <span className={cx('badge')}>12</span>
                                 </button>
                             </Tooltip>
                         </>
@@ -192,9 +148,9 @@ export default function Header() {
                         onChange={handleMenuChange}
                     >
                         {currentUser ? (
-                            <img
+                            <Image
                                 src={
-                                    'https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/c45577bf9f57312899f9efdedc3016be~c5_100x100.jpeg?x-expires=1662566400&x-signature=CF3dyLFCYhxhOz%2FAjR5Bp2R3AHU%3D      '
+                                    'https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/c45577bf9f57312899f9efdedc3016be~c5_100x100.jpeg?x-expires=1662566400&x-signature=CF3dyLFCYhxhOz%2FAjR5Bp2R3AHU%3D'
                                 }
                                 className={cx('user-avatar')}
                                 alt="Nguyen Van A"
