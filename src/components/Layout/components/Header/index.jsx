@@ -23,6 +23,7 @@ import 'tippy.js/dist/tippy.css';
 import { InboxIcon, MessageIcon } from '~/components/Icons';
 import Image from '~/components/Image';
 import Search from '~/components/Layout/components/Search';
+import routesConfig from '~/config/routes';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -93,7 +94,7 @@ export default function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={'/'}>
+                <Link to={routesConfig.home} className={cx('logo-link')}>
                     <div className={cx('logo')}>
                         <img src={images.logo} alt="Tiktok" />
                     </div>

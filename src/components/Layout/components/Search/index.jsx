@@ -46,6 +46,17 @@ function Search() {
         setShowResult(false);
     };
 
+    const handleSearchValue = (e) => {
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
+
     return (
         <Tippy
             interactive
@@ -69,7 +80,7 @@ function Search() {
                     placeholder="Search accounts and videos"
                     spellCheck={false}
                     value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleSearchValue}
                     onFocus={() => setShowResult(true)}
                 />
                 {!!searchValue && !showLoading && (
@@ -92,7 +103,11 @@ function Search() {
                     />
                 )}
 
-                <button className={cx('search-btn')}>
+                <button
+                    className={cx('search-btn')}
+                    onClick={handleSubmit}
+                    onMouseDown={(e) => e.preventDefault()}
+                >
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>
