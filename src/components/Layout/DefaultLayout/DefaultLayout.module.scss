@@ -4,8 +4,9 @@
     align-items: center;
 }
 .container {
-    width: 1150px;
+    width: var(--default-layout-width);
     display: flex;
+    margin-top: var(--default-layout-header-height);
     padding: 0 var(--default-layout-horizontal-spacer);
 }
 .content {

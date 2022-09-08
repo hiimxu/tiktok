@@ -50,7 +50,6 @@ export default function Menu({
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>
-                        {/* <Header title={'Language'} /> */}
                         {history.length > 1 ? (
                             <Header
                                 title={'Language'}
@@ -63,7 +62,7 @@ export default function Menu({
                         ) : (
                             <></>
                         )}
-                        {renderItems()}
+                        <div className={cx('menu-body')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}
