@@ -8,6 +8,7 @@ import config from '~/config';
 //Layout
 import { HeaderOnly } from '~/layouts';
 import Profile from '~/pages/Profile';
+import Live from '~/pages/Live';
 
 export const publicRoutes = [
     {
@@ -31,6 +32,10 @@ export const publicRoutes = [
         path: config.routes.search,
         component: Search,
         layout: null,
+    },
+    {
+        path: config.routes.live,
+        component: Live,
     },
 ];
 
