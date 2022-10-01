@@ -25,7 +25,7 @@ const PER_PAGE = 5;
 
 export default function Sidebar() {
     const [suggestUsers, setSuggestedUsers] = useState([]);
-    const [page, setPage] = useState(INIT_PAGE);
+    
 
     useEffect(() => {
         userService
@@ -36,7 +36,7 @@ export default function Sidebar() {
             })
 
             .catch((error) => console.log(error));
-    }, [page]);
+    }, []);
 
     return (
         <aside className={cx('wrapper')}>
