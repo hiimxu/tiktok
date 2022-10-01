@@ -7,13 +7,13 @@ import styles from './AccountPreview.module.scss';
 
 const cx = classNames.bind(styles);
 
-function AccountPreview() {
+function AccountPreview({ data }) {
     return (
         <div className={cx('wrapper')}>
             <header className={cx('header-preview')}>
                 <Image
-                    src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/89310ed5c4f60651f1d78dd66e432abf~c5_100x100.jpeg?x-expires=1662912000&x-signature=EbdmKTh4ELNa2fTl6h06m0nO5aI%3D"
-                    alt=""
+                    src={data.avatar}
+                    alt={data.nickname}
                     className={cx('avatar-preview')}
                 />
                 <Button primary className={cx('follow-btn')}>
@@ -22,21 +22,27 @@ function AccountPreview() {
             </header>
             <div className={cx('content-preview')}>
                 <p className={cx('nickname')}>
-                    <strong>nguyenmyanna</strong>
-                    <FontAwesomeIcon
-                        className={cx('check')}
-                        icon={faCheckCircle}
-                    />
+                    <strong>{data.nickname}</strong>
+                    {data.tick && (
+                        <FontAwesomeIcon
+                            className={cx('check')}
+                            icon={faCheckCircle}
+                        />
+                    )}
                 </p>
-                <p className={cx('name')}>Nguyen Van A</p>{' '}
+                <p className={cx('name')}>
+                    {data.first_name + ' ' + data.last_name}
+                </p>{' '}
             </div>
             <div className={cx('analytic')}>
                 <p>
-                    <strong className={cx('value')}>7.1M</strong>
+                    <strong className={cx('value')}>
+                        {data.followers_count}
+                    </strong>
                     <span className={cx('label')}>Follower</span>
                 </p>
                 <p>
-                    <strong className={cx('value')}>38.1M</strong>
+                    <strong className={cx('value')}>{data.likes_count}</strong>
                     <span className={cx('label')}>Likes</span>
                 </p>
             </div>
